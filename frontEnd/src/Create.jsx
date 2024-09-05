@@ -22,7 +22,7 @@ function Create() {
     <div className="d-flex vh-100 vw-100 bg-black justify-content-center align-items-center">
       <div className="w-50 bg-white rounded p-3 ">
         <form onSubmit={handleSubmit}>
-          <h2>Add New Student in the List</h2>
+          <h2>Add New Student</h2>
           <div className="mb-2">
             <label htmlFor="">Name</label>
             <input
