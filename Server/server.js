@@ -43,6 +43,49 @@ app.post("/student", (req, res) => {
   });
 });
 
+// sets up a route on my server to respond to GET requests when user accesses the root URL ("/read/:id")
+
+app.get("/read/:id", (req, res) => {
+  const sql = "SELECT * FROM student WHERE ID = ?";
+  const id = req.params.id;
+
+  // running the SQL query with id
+
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.json({ Message: "Server Error" });
+
+    // result back to the client in JSON format
+
+    return res.json(result);
+  });
+});
+
+app.put("/edit/:id", (req, res) => {
+  const sql = "UPDATE student SET `NAME` = ? ,`EMAIL` = ? WHERE ID = ?";
+  const id = req.params.id;
+
+  db.query(sql, [req.body.name, req.body.email, id], (err, result) => {
+    if (err) return res.json({ Message: "Server Error In Update" });
+
+    // result back to the client in JSON format
+
+    return res.json(result);
+  });
+});
+
+app.delete("/delete/:id", (req, res) => {
+  const sql = "DELETE FROM student  WHERE ID = ?";
+  const id = req.params.id;
+
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.json({ Message: "Server Error In Update" });
+
+    // result back to the client in JSON format
+
+    return res.json(result);
+  });
+});
+
 // Start The Server
 
 app.listen(8080, () => {
